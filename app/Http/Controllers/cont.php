@@ -28,7 +28,8 @@ class cont extends Controller
             'email' => 'required | email' ,
 
         ]);
-        return redirect('1')->with('success','Todo Correcto: Libro "xxxxx" guardado');
+        
+        return redirect('1')->with('success',$req -> titulo);
 
         
     }

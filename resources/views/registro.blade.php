@@ -2,12 +2,15 @@
 
 @section('contenido')
 
-    @if (Session::has('success'))
-    <div class="alert alert-success text-center">
-    {{Session::get('success')}}
-    </div>
+@if (Session::has('success'))
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+    Libro guardado: 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+{{Session::get('success')}}
+</div>
 
-    @endif
+@endif
+
 
 <div class="container mt-5 col-md-7 bg-light">
     <h3 class="display-2 text-center mb-5"> Registrar Libro</h3>

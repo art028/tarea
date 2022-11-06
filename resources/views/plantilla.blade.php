@@ -34,7 +34,7 @@
       @yield('contenido')
 
 
-      <div class="alert alert-warning" role="alert">
+      <div class="alert alert-warning text-center" role="alert">
         El Sotano.    CopyRight©      
         @php
             date_default_timezone_set('America/Mexico_City');
