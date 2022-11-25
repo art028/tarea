@@ -25,6 +25,9 @@
               <li class="nav-item">
                 <a class="nav-link active" href={{route('reg')}}>Registro</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" href={{route('form')}}>Autor</a>
+              </li>
             </ul>
           </div>
         </div>
