@@ -27,6 +27,10 @@ class controlador extends Controller
     {
         return view('registro');
     }
+    public function create1()
+    {
+        return view('autores');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -57,9 +61,29 @@ class controlador extends Controller
             "updated_at"=> Carbon::now()
         ]);
 
-        return redirect('1')->with('success',$req -> titulo);
+        return redirect('libro/registrar')->with('success',$req -> titulo);
         
     }
+
+    public function store1(Request $req)
+    {
+        $req->validate([
+            'nombre' => 'required | min:4',
+            'fecha' => 'required ' ,
+            'numero' => 'required | max:4' 
+
+        ]);
+        DB::table('tb_autores')->insert([
+            "nombre"=> $req-> input('nombre'),
+            "fecha"=> $req-> input('fecha'),
+            "libros"=> $req-> input('numeros'),
+            "created_at"=> Carbon::now(),
+            "updated_at"=> Carbon::now()
+        ]);
+        
+        return redirect('autor/registrar')->with('success','Autor Guardado');
+    }
+
 
     /**
      * Display the specified resource.

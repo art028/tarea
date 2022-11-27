@@ -4,7 +4,7 @@
 
 @if (Session::has('success'))
 <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-    Libro guardado: 
+    Autor Guardado
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 {{Session::get('success')}}
 </div>
@@ -15,7 +15,7 @@
 <div class="container mt-5 col-md-7 bg-light">
     <h3 class="display-2 text-center mb-5"> Registrar Autores</h3>
     
-    <form method="post" action="guardar">
+    <form method="POST" action="{{route('autor.guardar')}}">
         @csrf
         
         <label  class="form-label">Nombre Completo: </label>

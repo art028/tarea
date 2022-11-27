@@ -15,7 +15,7 @@
 <div class="container mt-5 col-md-7 bg-light">
     <h3 class="display-2 text-center mb-5"> Registrar Libro</h3>
     
-    <form method="post" action="guarda">
+    <form method="post" action="{{route('libro.guardar')}}">
         @csrf
         
         <label for="exampleInputEmail1" class="form-label">ISBN: </label>
