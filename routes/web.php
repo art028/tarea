@@ -30,3 +30,13 @@ Route::get('autor/registrar','App\Http\Controllers\controlador@create1')->name('
 
 Route::post('libro','App\Http\Controllers\controlador@store')->name('libro.guardar');
 Route::post('autor','App\Http\Controllers\controlador@store1')->name('autor.guardar');
+
+Route::get('libro/consulta','App\Http\Controllers\controlador@index')->name('libro.consulta');
+Route::get('autor/consulta','App\Http\Controllers\controlador@index1')->name('autor.consulta');
+
+
+Route::get('autor/{id}/actualiza','App\Http\Controllers\controlador@edit1')->name('autor.edita');
+
+
+Route::put('autor/{id}','App\Http\Controllers\controlador@update1')->name('autor.actualiza');
+

@@ -32,7 +32,7 @@
                 <a class="nav-link active" href={{route('libro.registrar')}}>Consulta Libro</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href={{route('autor.registrar')}}>Consulta Autor</a>
+                <a class="nav-link active" href={{route('autor.consulta')}}>Consulta Autor</a>
               </li>
             </ul>
           </div>

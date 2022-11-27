@@ -15,7 +15,13 @@ class controlador extends Controller
      */
     public function index()
     {
-        //
+        $consultarec= DB::table('tb_recuerdos')->get();
+        return view('recuerdo',compact('consultarec'));
+    }
+    public function index1()
+    {
+        $consultarautor= DB::table('tb_autores')->get();
+        return view('consulta_aut',compact('consultarautor'));
     }
 
     /**
@@ -70,13 +76,13 @@ class controlador extends Controller
         $req->validate([
             'nombre' => 'required | min:4',
             'fecha' => 'required ' ,
-            'numero' => 'required | max:4' 
+            'numero' => 'required | max:4' ,
 
         ]);
         DB::table('tb_autores')->insert([
             "nombre"=> $req-> input('nombre'),
             "fecha"=> $req-> input('fecha'),
-            "libros"=> $req-> input('numeros','0'),
+            "libros"=> $req-> input('numeros'),
             "created_at"=> Carbon::now(),
             "updated_at"=> Carbon::now()
         ]);
@@ -104,7 +110,16 @@ class controlador extends Controller
      */
     public function edit($id)
     {
-        //
+        $consultaid= DB::table('tb_recuerdos')->where('idRecuerdo',$id)->first();
+
+        return view('editar',compact('consultaid'));
+    }
+
+    public function edit1($id)
+    {
+        $consultaid1= DB::table('tb_autores')->where('idAutor',$id)->first();
+
+        return view('autores_actualizar',compact('consultaid1'));
     }
 
     /**
@@ -116,7 +131,31 @@ class controlador extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('tb_recuerdos')->where('idRecuerdo',$id)->update([
+            "titulo"=> $request-> input('txttitulo'),
+            "recuerdo"=> $request-> input('txtrecuerdo'),
+            "updated_at"=> Carbon::now()
+        ]);
+        return redirect('recuerdo')->with('confirmacion','abc');
+    }
+
+     public function update1(Request $req, $id)
+    {
+        $req->validate([
+            'nombre' => 'required | min:4',
+            'fecha' => 'required ' ,
+            'numero' => 'required | max:4' 
+        ]);
+
+        DB::table('tb_autores')->where('idAutor',$id)->update([
+            "nombre"=> $req-> input('nombre'),
+            "fecha"=> $req-> input('fecha'),
+            "libros"=> $req-> input('numeros'),
+            "updated_at"=> Carbon::now()
+        ]);
+        
+        return redirect('autor/consulta')->with('success',$req -> nombre);
+
     }
 
     /**
