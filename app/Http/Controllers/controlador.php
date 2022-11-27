@@ -76,7 +76,7 @@ class controlador extends Controller
         DB::table('tb_autores')->insert([
             "nombre"=> $req-> input('nombre'),
             "fecha"=> $req-> input('fecha'),
-            "libros"=> $req-> input('numeros'),
+            "libros"=> $req-> input('numeros','0'),
             "created_at"=> Carbon::now(),
             "updated_at"=> Carbon::now()
         ]);

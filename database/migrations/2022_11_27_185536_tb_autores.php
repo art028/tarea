@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigIncrements('idAutor');
             $table->string('nombre');
             $table->date('fecha');
-            $table->integer('libros');
+            $table->string('libros');
             $table->timestamps();
         });
 
