@@ -13,7 +13,7 @@
 
 
 <div class="container mt-5 col-md-7 bg-light">
-    <h3 class="display-2 text-center mb-5"> Registrar Libro</h3>
+    <h3 class="display-2 text-center mb-5"> Registrar Autores</h3>
     
     <form method="post" action="guardar">
         @csrf
