@@ -13,14 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_autores', function (Blueprint $table) {
-            $table->engine="InnoDB";
-            $table->increments('idAutor');
-            $table->string('nombre');
-            $table->date('fecha');
-            $table->int('libros');
-            $table->timestamps();
-        });
+        //
     }
 
     /**
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_autores');
+        //
     }
 };
