@@ -23,10 +23,16 @@
                 <a class="nav-link active" aria-current="page" href={{route('prin')}}>Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href={{route('reg')}}>Registro</a>
+                <a class="nav-link active" href={{route('libro.registrar')}}>Registro Libro</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href={{route('form')}}>Autor</a>
+                <a class="nav-link active" href={{route('form')}}>Registro Autor</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href={{route('form')}}>Consulta Libro</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href={{route('form')}}>Consulta Autor</a>
               </li>
             </ul>
           </div>

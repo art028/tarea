@@ -25,7 +25,7 @@ class controlador extends Controller
      */
     public function create()
     {
-        //
+        return view('registro');
     }
 
     /**
@@ -34,9 +34,31 @@ class controlador extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $req->validate([
+            'isbn' => 'required | min:13 | numeric',
+            'titulo' => 'required' ,
+            'autor' => 'required' ,
+            'pagina' => 'required | numeric' ,
+            'editorial' => 'required' ,
+            'email' => 'required | email' ,
+
+        ]);
+        DB::table('tb_libros')->insert([
+            "isbn"=> $req-> input('isbn'),
+            "titulo"=> $req-> input('titulo'),
+            "autor_id"=> $req-> input('autor'),
+            "pagina"=> $req-> input('pagina'),
+            "editorial"=> $req-> input('editorial'),
+            "correo"=> $req-> input('editar'),
+            "fecha"=> Carbon::now(),
+            "created_at"=> Carbon::now(),
+            "updated_at"=> Carbon::now()
+        ]);
+
+        return redirect('1')->with('success',$req -> titulo);
+        
     }
 
     /**
