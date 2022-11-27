@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('autores', function (Blueprint $table) {
+        Schema::create('tb_autores', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->bigIncrements('idAutor');
             $table->string('nombre');

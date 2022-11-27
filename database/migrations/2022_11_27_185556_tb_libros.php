@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('libros', function (Blueprint $table) {
+        Schema::create('tb_libros', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->bigIncrements('idLibro');
-            $table->char('isbn');
+            $table->integer('isbn');
             $table->string('titulo');
             $table->unsignedBigInteger('autor_id');
             $table->integer('paginas');
             $table->string('editorial');
             $table->string('correo');
             $table->timestamps();
-            $table->foreign('autor_id')->references('idAutor')->on('autores')->onDelete('cascade');
+            $table->foreign('autor_id')->references('idAutor')->on('tb_autores')->onDelete('cascade');
         });
 
     }
