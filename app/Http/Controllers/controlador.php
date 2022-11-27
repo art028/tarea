@@ -102,6 +102,12 @@ class controlador extends Controller
         //
     }
 
+    public function show1($id)
+    {
+        $consultarautor = DB::table('tb_autores')->where('idAutor',$id)->first();
+        return view('elimina_aut',compact('consultarautor'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -164,8 +170,15 @@ class controlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($id)
     {
-        //
+           
+    }
+
+     public function destroy1($id)
+    {
+        DB::table('tb_autores')->where('idAutor',$id)->delete();
+        return redirect('autor/consulta')->with('eliminado','Autor Eliminado');
     }
 }

@@ -40,3 +40,9 @@ Route::get('autor/{id}/actualiza','App\Http\Controllers\controlador@edit1')->nam
 
 Route::put('autor/{id}','App\Http\Controllers\controlador@update1')->name('autor.actualiza');
 
+
+Route::get('autor/{id}/eliminar','App\Http\Controllers\controlador@show1')->name('autor.elimina');
+
+
+Route::delete('autor/{id}','App\Http\Controllers\controlador@destroy1')->name('autor.borrar');
+

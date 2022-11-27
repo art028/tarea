@@ -4,7 +4,7 @@
 
 @if (Session::has('success'))
 <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-    Libro Actualizado :  
+    Autor Actualizado :  
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 {{Session::get('success')}}
 </div>
@@ -13,7 +13,7 @@
 
 @if (Session::has('eliminado'))
 <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-    Libro Eliminado :  
+Autor Eliminado
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 {{Session::get('success')}}
 </div>
@@ -42,7 +42,7 @@
 
         <div class="card-footer text-muted">
             <a href="{{route('autor.edita',$consulta->idAutor)}}" class="btn btn-outline-warning">Actualizar</a>
-            <a href="{{route('autor.consulta',$consulta->idAutor)}}" class="btn btn-outline-danger">Eliminar</a>
+            <a href="{{route('autor.elimina',$consulta->idAutor)}}" class="btn btn-outline-danger">Eliminar</a>
         </div>
       </div>
         <br>
