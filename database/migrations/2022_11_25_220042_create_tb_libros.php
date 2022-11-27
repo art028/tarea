@@ -14,8 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_libros', function (Blueprint $table) {
-            $table->id();
+            $table->engine="InnoDB";
+            $table->increments('idLibro');
+            $table->int('isbn');
+            $table->string('titulo');
+            $table->int('autor_id')->unsigned();
+            $table->int('paginas');
+            $table->string('editorial');
+            $table->string('correo');
             $table->timestamps();
+            $table->foreign('autor_id')->references('idAutor')->on('tb_autores')->onDelete("cascade");
         });
     }
 
