@@ -82,12 +82,12 @@ class controlador extends Controller
         DB::table('tb_autores')->insert([
             "nombre"=> $req-> input('nombre'),
             "fecha"=> $req-> input('fecha'),
-            "libros"=> $req-> input('numeros'),
+            "libros"=> $req-> input('numero'),
             "created_at"=> Carbon::now(),
             "updated_at"=> Carbon::now()
         ]);
         
-        return redirect('autor/registrar')->with('success','Autor Guardado');
+        return redirect('autor/registrar')->with('success','!');
     }
 
 
@@ -156,7 +156,7 @@ class controlador extends Controller
         DB::table('tb_autores')->where('idAutor',$id)->update([
             "nombre"=> $req-> input('nombre'),
             "fecha"=> $req-> input('fecha'),
-            "libros"=> $req-> input('numeros'),
+            "libros"=> $req-> input('numero'),
             "updated_at"=> Carbon::now()
         ]);
         
