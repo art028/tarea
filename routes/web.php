@@ -34,15 +34,15 @@ Route::post('autor','App\Http\Controllers\controlador@store1')->name('autor.guar
 Route::get('libro/consulta','App\Http\Controllers\controlador@index')->name('libro.consulta');
 Route::get('autor/consulta','App\Http\Controllers\controlador@index1')->name('autor.consulta');
 
-
+Route::get('libro/{id}/actualiza','App\Http\Controllers\controlador@edit')->name('libro.edita');
 Route::get('autor/{id}/actualiza','App\Http\Controllers\controlador@edit1')->name('autor.edita');
 
-
+Route::put('libro/{id}','App\Http\Controllers\controlador@update')->name('libro.actualiza');
 Route::put('autor/{id}','App\Http\Controllers\controlador@update1')->name('autor.actualiza');
 
-
+Route::get('libro/{id}/eliminar','App\Http\Controllers\controlador@show')->name('libro.elimina');
 Route::get('autor/{id}/eliminar','App\Http\Controllers\controlador@show1')->name('autor.elimina');
 
-
+Route::delete('libro/{id}','App\Http\Controllers\controlador@destroy')->name('libro.borrar');
 Route::delete('autor/{id}','App\Http\Controllers\controlador@destroy1')->name('autor.borrar');
 

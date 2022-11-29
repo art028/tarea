@@ -72,11 +72,6 @@ class controlador extends Controller
         
     }
 
-    public function traer(){
-        $autores = $tb_autores::all();
-        return view('registro',compact('autores'));
-    }
-
     public function store1(Request $req)
     {
         $req->validate([
@@ -105,7 +100,8 @@ class controlador extends Controller
      */
     public function show($id)
     {
-        //
+        $consultarlibro = DB::table('tb_libros')->where('idLibro',$id)->first();
+        return view('elimina_lib',compact('consultarlibro'));
     }
 
     public function show1($id)
@@ -122,9 +118,9 @@ class controlador extends Controller
      */
     public function edit($id)
     {
-        $consultaid= DB::table('tb_recuerdos')->where('idRecuerdo',$id)->first();
+        $consultaid= DB::table('tb_libros')->where('idLibro',$id)->first();
 
-        return view('editar',compact('consultaid'));
+        return view('registro_actualizar',compact('consultaid'));
     }
 
     public function edit1($id)
@@ -141,15 +137,28 @@ class controlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
-        DB::table('tb_recuerdos')->where('idRecuerdo',$id)->update([
-            "titulo"=> $request-> input('txttitulo'),
-            "recuerdo"=> $request-> input('txtrecuerdo'),
+        $req->validate([
+            'isbn' => 'required | min:13 | numeric',
+            'titulo' => 'required' ,
+            'autor' => 'required' ,
+            'pagina' => 'required | numeric' ,
+            'editorial' => 'required' ,
+            'email' => 'required | email' ,
+
+        ]);
+        DB::table('tb_libros')->update([
+            "isbn"=> $req-> input('isbn'),
+            "titulo"=> $req-> input('titulo'),
+            "autor_id"=> $req-> input('autor'),
+            "pagina"=> $req-> input('pagina'),
+            "editorial"=> $req-> input('editorial'),
+            "correo"=> $req-> input('email'),
             "updated_at"=> Carbon::now()
         ]);
-        return redirect('recuerdo')->with('confirmacion','abc');
-    }
+
+        return redirect('libro/consulta')->with('success',$req -> titulo);
 
      public function update1(Request $req, $id)
     {
@@ -179,7 +188,8 @@ class controlador extends Controller
     
     public function destroy($id)
     {
-           
+        DB::table('tb_libros')->where('idLibro',$id)->delete();
+        return redirect('libro/consulta')->with('eliminado','Libro Eliminado');
     }
 
      public function destroy1($id)
