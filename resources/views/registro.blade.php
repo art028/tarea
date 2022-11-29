@@ -23,16 +23,21 @@
             @error('isbn')
                 <small><strong style="color: red">{{$message}}</strong></small>
             @enderror
-         <br>
-       
+         <br>       
         <label for="exampleInputPassword1" class="form-label">Titulo: </label>
         <input name="titulo" type="text" class="form-control" value="{{ old('titulo')}}">
             @error('titulo')
                 <small><strong style="color: red">{{$message}}</strong></small>
             @enderror
             <br>
-        <label for="exampleInputEmail1" class="form-label">Autor: </label>
-        <input name="autor" type="text" class="form-control" value="{{ old('autor')}}">
+
+        <label for="text" class="form-label">Autor: </label>
+        <select name="autor" class="form-control">
+            <option selected>Selecciona el Autor</option> 
+            @foreach ($autores as $tb_autores)
+                <option value="{{$tb_autores['idAutor']}}">{{$tb_autores['nombre']}}</option>
+            @endforeach    
+        </select>       
             @error('autor')
                 <small><strong style="color: red">{{$message}}</strong></small>
             @enderror

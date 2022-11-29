@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tb_autores;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
@@ -31,7 +32,8 @@ class controlador extends Controller
      */
     public function create()
     {
-        return view('registro');
+        $autores = $tb_autores::all();
+        return view('registro',compact('autores'));
     }
     public function create1()
     {
@@ -61,14 +63,18 @@ class controlador extends Controller
             "autor_id"=> $req-> input('autor'),
             "pagina"=> $req-> input('pagina'),
             "editorial"=> $req-> input('editorial'),
-            "correo"=> $req-> input('editar'),
-            "fecha"=> Carbon::now(),
+            "correo"=> $req-> input('email'),
             "created_at"=> Carbon::now(),
             "updated_at"=> Carbon::now()
         ]);
 
         return redirect('libro/registrar')->with('success',$req -> titulo);
         
+    }
+
+    public function traer(){
+        $autores = $tb_autores::all();
+        return view('registro',compact('autores'));
     }
 
     public function store1(Request $req)
