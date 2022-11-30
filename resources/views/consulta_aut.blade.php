@@ -24,7 +24,7 @@ Autor Eliminado
 <h1 class="display-1 mt-4 mb-4 text-center"> Autores </h1>
 
 @foreach ($consultarautor as $consulta)
-<div class="container col-md-6">
+<div class="container col-md-4">
    
     <div class="card text-center">
         <div class="card-header">

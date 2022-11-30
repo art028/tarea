@@ -16,8 +16,16 @@ class controlador extends Controller
      */
     public function index()
     {
-        $consultarec= DB::table('tb_recuerdos')->get();
-        return view('recuerdo',compact('consultarec'));
+        $consultarlib= DB::table('tb_autores')
+        ->crossJoin('tb_libros')
+        ->select('tb_libros.idLibro', 'tb_libros.isbn', 'tb_libros.titulo', 'tb_autores.nombre', 'tb_libros.paginas', 'tb_libros.editorial', 'tb_libros.correo')
+        ->whereIn('tb_autores.idAutor',(function ($query) {
+            $query->from('tb_libros')
+                ->select('autor_id');
+        }))
+        ->where('tb_autores.idAutor','=',DB::raw('tb_libros.autor_id'))
+        ->get();
+        return view('consulta_lib',compact('consultarlib'));
     }
     public function index1()
     {
@@ -32,7 +40,7 @@ class controlador extends Controller
      */
     public function create()
     {
-        $autores = $tb_autores::all();
+        $autores = tb_autores::all();
         return view('registro',compact('autores'));
     }
     public function create1()
@@ -49,7 +57,7 @@ class controlador extends Controller
     public function store(Request $req)
     {
         $req->validate([
-            'isbn' => 'required | min:13 | numeric',
+            'isbn' => 'required | Digits_between:13,num | numeric ',
             'titulo' => 'required' ,
             'autor' => 'required' ,
             'pagina' => 'required | numeric' ,
@@ -61,7 +69,7 @@ class controlador extends Controller
             "isbn"=> $req-> input('isbn'),
             "titulo"=> $req-> input('titulo'),
             "autor_id"=> $req-> input('autor'),
-            "pagina"=> $req-> input('pagina'),
+            "paginas"=> $req-> input('pagina'),
             "editorial"=> $req-> input('editorial'),
             "correo"=> $req-> input('email'),
             "created_at"=> Carbon::now(),
@@ -100,7 +108,15 @@ class controlador extends Controller
      */
     public function show($id)
     {
-        $consultarlibro = DB::table('tb_libros')->where('idLibro',$id)->first();
+        $consultarlibro = DB::table('tb_autores')
+        ->crossJoin('tb_libros')
+        ->select('tb_libros.idLibro', 'tb_libros.isbn', 'tb_libros.titulo', 'tb_autores.nombre', 'tb_libros.paginas', 'tb_libros.editorial', 'tb_libros.correo')
+        ->whereIn('tb_autores.idAutor',(function ($query) {
+            $query->from('tb_libros')
+                ->select('autor_id');
+        }))
+        ->where('tb_autores.idAutor','=',DB::raw('tb_libros.autor_id'))
+        ->get();
         return view('elimina_lib',compact('consultarlibro'));
     }
 
@@ -119,8 +135,8 @@ class controlador extends Controller
     public function edit($id)
     {
         $consultaid= DB::table('tb_libros')->where('idLibro',$id)->first();
-
-        return view('registro_actualizar',compact('consultaid'));
+        $autores = tb_autores::all();
+        return view('actualizar',compact('consultaid'));
     }
 
     public function edit1($id)
@@ -140,7 +156,7 @@ class controlador extends Controller
     public function update(Request $req, $id)
     {
         $req->validate([
-            'isbn' => 'required | min:13 | numeric',
+            'isbn' => 'required | Digits_between:13,num | numeric ',
             'titulo' => 'required' ,
             'autor' => 'required' ,
             'pagina' => 'required | numeric' ,
@@ -152,14 +168,15 @@ class controlador extends Controller
             "isbn"=> $req-> input('isbn'),
             "titulo"=> $req-> input('titulo'),
             "autor_id"=> $req-> input('autor'),
-            "pagina"=> $req-> input('pagina'),
+            "paginas"=> $req-> input('pagina'),
             "editorial"=> $req-> input('editorial'),
             "correo"=> $req-> input('email'),
             "updated_at"=> Carbon::now()
         ]);
 
         return redirect('libro/consulta')->with('success',$req -> titulo);
-
+    }
+    
      public function update1(Request $req, $id)
     {
         $req->validate([

@@ -37,7 +37,7 @@ Route::get('autor/consulta','App\Http\Controllers\controlador@index1')->name('au
 Route::get('libro/{id}/actualiza','App\Http\Controllers\controlador@edit')->name('libro.edita');
 Route::get('autor/{id}/actualiza','App\Http\Controllers\controlador@edit1')->name('autor.edita');
 
-Route::put('libro/{id}','App\Http\Controllers\controlador@update')->name('libro.actualiza');
+Route::put('libros/{id}','App\Http\Controllers\controlador@update')->name('libro.actualiza');
 Route::put('autor/{id}','App\Http\Controllers\controlador@update1')->name('autor.actualiza');
 
 Route::get('libro/{id}/eliminar','App\Http\Controllers\controlador@show')->name('libro.elimina');

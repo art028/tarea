@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tb_libros', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->bigIncrements('idLibro');
-            $table->integer('isbn');
+            $table->char('isbn');
             $table->string('titulo');
             $table->unsignedBigInteger('autor_id');
             $table->integer('paginas');

@@ -11,9 +11,9 @@
 
 @endif
 
-@if (Session::has('success'))
+@if (Session::has('eliminado'))
 <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-    Libro Eliminado :  
+    Libro Eliminado   
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 {{Session::get('success')}}
 </div>
@@ -23,31 +23,43 @@
 
 <h1 class="display-1 mt-4 mb-4 text-center"> Libros </h1>
 
-@foreach ($consultarec as $consulta)
+@foreach ($consultarlib as $consulta)
 <div class="container col-md-6">
    
     <div class="card text-center">
         <div class="card-header">
           <h5 class="text-primary text-center">Datos del Libro</h5>
         </div>
-        <div class="card-body">
-          <h6 class="card-title">ISBN: </h6>
-          <p class="text-decoration-underline">{{$consulta->nombre}}</p>
-          <h6 class="card-text">Titulo:</h6>
-          <p class="text-decoration-underline">{{$consulta->fecha}}</p>
-          <h6 class="card-text">Autor:</h6>
-          <p class="text-decoration-underline">{{$consulta->libros}}</p>
-          <h6 class="card-text">Paginas:</h6>
-          <p class="text-decoration-underline">{{$consulta->libros}}</p>
-          <h6 class="card-text">Editorial:</h6>
-          <p class="text-decoration-underline">{{$consulta->libros}}</p>
-          <h6 class="card-text">Correo Editorial:</h6>
-          <p class="text-decoration-underline">{{$consulta->libros}}</p>
-        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ISBN</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Paginas</th>
+              <th scope="col">Editorial</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{$consulta->isbn}}</td>
+              <td>{{$consulta->titulo}}</td>
+              <td>{{$consulta->nombre}}</td>
+              <td>{{$consulta->paginas}}</td>
+              <td>{{$consulta->editorial}}</td>
+              <td>{{$consulta->correo}}</td>
+              <td>
+                <a href="{{route('libro.edita',$consulta->idLibro)}}"> <img src="\img\editar.png"></a>
+              <a href="{{route('libro.elimina',$consulta->idLibro)}}"> <img src="\img\boton-eliminar.png"></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
         <div class="card-footer text-muted">
-            <a href="{{route('recuerdo.edit',$consulta->idRecuerdo)}}" class="btn btn-warning">Actualizar</a>
-            <a href="{{route('recuerdo.eliminar',$consulta->idRecuerdo)}}" class="btn btn-danger">Eliminar</a>
+            
         </div>
       </div>
         <br>
