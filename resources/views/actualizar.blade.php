@@ -17,7 +17,7 @@
     
     <form method="post" action="{{route('libro.actualiza',$consultaid->idLibro)}}">
         @csrf
-        
+        {{!!method_field('PUT')!!}}
         <label for="exampleInputEmail1" class="form-label">ISBN: </label>
         <input name="isbn" type="text" class="form-control" value="{{$consultaid->isbn}}" placeholder="Solo numeros">
             @error('isbn')
@@ -61,7 +61,7 @@
               @enderror
            <br>                   
         <br>
-        <button type="submit" class="btn btn-outline-dark">Registrar</button>
+        <button type="submit" class="btn btn-outline-dark">Actualizar</button>
     </form>
     <br>
 </div>

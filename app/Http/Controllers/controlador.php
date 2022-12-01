@@ -116,7 +116,8 @@ class controlador extends Controller
                 ->select('autor_id');
         }))
         ->where('tb_autores.idAutor','=',DB::raw('tb_libros.autor_id'))
-        ->get();
+        ->get()
+        ->first();
         return view('elimina_lib',compact('consultarlibro'));
     }
 
@@ -136,7 +137,7 @@ class controlador extends Controller
     {
         $consultaid= DB::table('tb_libros')->where('idLibro',$id)->first();
         $autores = tb_autores::all();
-        return view('actualizar',compact('consultaid'));
+        return view('actualizar',compact('consultaid'),compact('autores'));
     }
 
     public function edit1($id)
@@ -205,6 +206,7 @@ class controlador extends Controller
     
     public function destroy($id)
     {
+        
         DB::table('tb_libros')->where('idLibro',$id)->delete();
         return redirect('libro/consulta')->with('eliminado','Libro Eliminado');
     }
